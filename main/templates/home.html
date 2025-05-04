@@ -1,0 +1,41 @@
+{# main/templates/url_list.html #}
+{% extends 'base.html' %}
+
+{% block title %}Site Navigation{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Site Navigation</h1>
+        
+        <div class="grid gap-4 md:grid-cols-2">
+            {% for url in urls %}
+            <a href="{{ url.url }}" 
+               class="group block p-6 border rounded-lg hover:border-indigo-500 dark:hover:border-indigo-400 transition-all
+                      bg-white dark:bg-slate-700 border-gray-200 dark:border-slate-600
+                      hover:shadow-lg hover:transform hover:-translate-y-1">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                            {{ url.name }}
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400 font-mono">
+                            {{ url.url }}
+                        </p>
+                    </div>
+                    <svg class="w-6 h-6 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" 
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </div>
+            </a>
+            {% empty %}
+            <div class="col-span-full p-6 text-center text-gray-500 dark:text-slate-400">
+                No navigation items found
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
